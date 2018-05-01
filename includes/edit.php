@@ -21,7 +21,7 @@
     }  
   };  
   var $div = $("<div>", test);  
-  $div.html(" <textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"save();\" type=\"button\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button>");
+  $div.html(" <form action=\" hello();\" method=\"post\"><textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button></form>");
   $("body").append($div);  
 });  
     }
@@ -32,7 +32,14 @@
     }
 
     function save(){
+        
     	$("button").siblings("textarea").prop("disabled",true);
     }
 </script>
+<?php
+        // $connection = mysql_connect("localhost","root","");
+        // $db = mysql_select_db("stories", $connection);
+       function hello(){echo("hello");}
+
+?>
 </html>
