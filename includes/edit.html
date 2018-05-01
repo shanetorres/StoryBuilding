@@ -1,7 +1,27 @@
 <head>
-    <link rel="stylesheet" href="css/stylesheet.css?version=1" />
+    <link rel="stylesheet" href="css/stylesheet.css" />
     <link title='Roboto' href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <div id="header">
     <h1 id = "userTitle">User Stories</h1>
+    <Button type="button" id="newStory" onclick="newStory();">Create New Story</Button>
 </div>
+<body></body>
+
+<script>
+    function newStory(){
+        $(document).ready(function() {  
+  var test = {  
+    id: "div",  
+    class: "divclass",  
+    css: {  
+      "color": "Green"  
+    }  
+  };  
+  var $div = $("<div>", test);  
+  $div.html("<ul id=\"story\"\> <button type=\"button\" id=\"saveStory\">Save</button></li> <li><button type=\"button\" id=\"saveStory\">Delete</button></li> </ul>");  
+  $("body").append($div);  
+});  
+    }
+</script>
