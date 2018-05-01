@@ -21,9 +21,18 @@
     }  
   };  
   var $div = $("<div>", test);  
-  $div.html(" <textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"updateDB();\" type=\"button\" id=\"saveStory\">Save</button> <button type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button>");  
+  $div.html(" <textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"save();\" type=\"button\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button>");
   $("body").append($div);  
 });  
+    }
+
+
+    function edit(){
+    	$("button").siblings("textarea").removeAttr("disabled");
+    }
+
+    function save(){
+    	$("button").siblings("textarea").prop("disabled",true);
     }
 </script>
 </html>
