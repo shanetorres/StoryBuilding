@@ -7,3 +7,13 @@ body {background-color: powderblue;
 #header {
     background-color:powderblue;
 }
+
+li {
+    float: left;
+}
+
+textarea {
+    resize: none;
+    height: 200;
+    width: 200;
+}

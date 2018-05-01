@@ -1,11 +1,12 @@
+<html>
 <head>
-    <link rel="stylesheet" href="css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
     <link title='Roboto' href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <div id="header">
     <h1 id = "userTitle">User Stories</h1>
-    <Button type="button" id="newStory" onclick="newStory();">Create New Story</Button>
+    <Button type="button" id="newStory" onclick="newStory();">Create New Story</Button> <br>
 </div>
 <body></body>
 
@@ -20,8 +21,9 @@
     }  
   };  
   var $div = $("<div>", test);  
-  $div.html("<ul id=\"story\"\> <button type=\"button\" id=\"saveStory\">Save</button></li> <li><button type=\"button\" id=\"saveStory\">Delete</button></li> </ul>");  
+  $div.html(" <textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"updateDB();\" type=\"button\" id=\"saveStory\">Save</button> <button type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button>");  
   $("body").append($div);  
 });  
     }
 </script>
+</html>
