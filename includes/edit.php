@@ -1,3 +1,6 @@
+<?php
+require("save.php");
+?>
 <html>
 <head>
     <link rel="stylesheet" href="../css/stylesheet.css" />
@@ -21,7 +24,7 @@
     }  
   };  
   var $div = $("<div>", test);  
-  $div.html(" <form action=\" hello();\" method=\"post\"><textarea id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button></form>");
+  $div.html(" <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button></form>");
   $("body").append($div);  
 });  
     }
@@ -37,9 +40,21 @@
     }
 </script>
 <?php
-        // $connection = mysql_connect("localhost","root","");
-        // $db = mysql_select_db("stories", $connection);
-       function hello(){echo("hello");}
+        $connection = mysql_connect("localhost","root","mysql");
+        $db = mysql_select_db("stories", $connection);
+        if($_POST["text"])
+        {
+        //    echo $_POST["text"];
+           $mytext = $_POST["text"];
+           setMessage($mytext);
+
+        }
+        
+        if(isset($_POST['save']))
+        {
+            // $q = "INSERT INTO stories ("
+       return;
+        }
 
 ?>
 </html>
