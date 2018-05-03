@@ -14,6 +14,9 @@ require("save.php");
 <body></body>
 
 <script>
+
+    var storyId = 1;
+
     function newStory(){
         $(document).ready(function() {  
   var test = {  
@@ -24,8 +27,9 @@ require("save.php");
     }  
   };  
   var $div = $("<div>", test);  
-  $div.html(" <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button></form>");
-  $("body").append($div);  
+  $div.html(" <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value="+storyId+"></form>");
+  $("body").append($div);
+            storyId++;
 });  
     }
 
@@ -40,20 +44,12 @@ require("save.php");
     }
 </script>
 <?php
-        $connection = mysql_connect("localhost","root","mysql");
-        $db = mysql_select_db("stories", $connection);
-        if($_POST["text"])
+        if(!empty($_POST["text"]))
         {
-        //    echo $_POST["text"];
            $mytext = $_POST["text"];
-           setMessage($mytext);
+            $id = $_POST["id"];
+           setMessage($mytext,$id);
 
-        }
-        
-        if(isset($_POST['save']))
-        {
-            // $q = "INSERT INTO stories ("
-       return;
         }
 
 ?>
