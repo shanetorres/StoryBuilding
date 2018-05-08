@@ -37,7 +37,7 @@ require("save.php");
 </script>
 <?php
 
-        if(!empty($_POST["text"]))
+        if(isset($_POST["save"]))
         {
            $mytext = $_POST["text"];
             $id = $_POST["id"];
@@ -45,6 +45,9 @@ require("save.php");
             $title = $_POST["title"];
            setMessage($mytext,$id,$author,$title);
 
+        }else if(isset($_POST["delete"])){
+            $id = $_POST["id"];
+            deleteMessage($id);
         }
 
 ?>
