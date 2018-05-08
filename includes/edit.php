@@ -15,7 +15,7 @@ require("save.php");
 
     <?php $nextId = getNextId();
 
-        echo  "<div> <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" placeholder=\"Create a new story here!\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value=" . $nextId . "></form></div>";
+        echo  "<div> <form action=\"\" method=\"post\"><p>Title</p><input name=\"title\" required><br /><p>Author</p><input name=\"author\" required><br /><br /><textarea name=\"text\" id=\"storytext\" placeholder=\"Create a new story here!\" style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <input type=\"hidden\" name=\"id\" value=" . $nextId . "></form></div>";
 
         loadStories();
 
@@ -24,28 +24,6 @@ require("save.php");
 </body>
 
 <script>
-
-    /*var storyId = 1;
-
-    function newStory(){
-  var test = {  
-    id: "div",  
-    class: "divclass",  
-    css: {  
-      "color": "Green"  
-    }  
-  };  
-  var $div = $("<div>", test);  
-  $div.html(" <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value="+storyId+"></form>");
-  $("body").append($div);
-            storyId++;
-
-    }
-
-    function setStoryId(newId){
-        storyId = newId;
-    }
-*/
 
     function edit(){
     	$("button").siblings("textarea").removeAttr("disabled");
@@ -63,7 +41,9 @@ require("save.php");
         {
            $mytext = $_POST["text"];
             $id = $_POST["id"];
-           setMessage($mytext,$id);
+            $author = $_POST["author"];
+            $title = $_POST["title"];
+           setMessage($mytext,$id,$author,$title);
 
         }
 
