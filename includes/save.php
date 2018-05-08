@@ -1,56 +1,62 @@
 
 <?php
+//DEFINE ('DB_USER', 'root');
+//DEFINE ('DB_PASSWORD', '');
+//DEFINE ('DB_HOST', 'localhost');
+//DEFINE ('DB_NAME', 'stories');
 
-//require("mysqli_connect.php");
+
+
 function setMessage($mytext,$id) {
-    DEFINE ('DB_USER', 'root');
-DEFINE ('DB_PASSWORD', 'mysql');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'stories');
-
- $dbc = @mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME)
+    $dbc = @mysqli_connect('localhost','root','mysql','stories')
 OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
 
     $q = "INSERT INTO Story (storyID, storyText) VALUES('$id','$mytext')";
     if ($dbc->query($q) === true)
     {
-        echo "new record created";
+        header('Refresh:0');
     }
     else {
         echo "error: " . $q . "<br>" . $dbc->error;
     }
-       // $r = mysqli_query($dbc,$q);
-   // $insert = mysqli_insert_id($dbc);
 }
 
 function loadStories(){
-       DEFINE ('DB_USER', 'root');
-DEFINE ('DB_PASSWORD', 'mysql');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'stories');
-
- $dbc = @mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME)
+    $dbc = @mysqli_connect('localhost','root','','stories')
 OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
 
     $q = "SELECT * FROM Story";
 
-    if ($dbc->query($q) === true)
-    {
-        echo "records selected";
-    }
-    else {
-        echo "error: " . $q . "<br>" . $dbc->error;
+    $result = $dbc->query($q);
+
+    if (mysqli_num_rows($result) > 0){
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<div> <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\">" . $row["storyText"] . "</textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value=" . $row["storyID"] . "></form></div>";
+        }
     }
 }
 
-#WHAT I DID SINCE LAST TIME (change this message if you make changes to help see what you did)
+function getNextId(){
+    $dbc = @mysqli_connect('localhost','root','mysql','stories')
+OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
 
-/*made a hidden input named id with the storyId as its value. It increments with each time the create story button is clicked.
+    $q = "SELECT * FROM Story ORDER BY storyID DESC LIMIT 1";
 
-On page load it needs to load all the stories from the database, put the storyID from the DB in the hidden field value and the storyText from DB as the value of the textarea as well as set the storyId variable to one more than the highest storyID in the DB. To update a story it needs to check if the id exists already in the DB, if it does, $q = "INSERT INTO STORY (storyText) VALUES('$mytext') WHERE storyID = '$id'" or something like that...
+    $result = $dbc->query($q);
+    $row = mysqli_fetch_assoc($result);
 
-The loadStories function currently does not work at all. call is currently in line 3 of edit.php but maybe move the whole function to script at bottom of edit.php? Idk...
+    return $row["storyID"] + 1;
+}
 
+#TODO ITEMS
+
+/*
+
+TODO: To update a story it needs to check if the id exists already in the DB, if it does, $q = "INSERT INTO STORY (storyText) VALUES('$mytext') WHERE storyID = '$id'" or something like that...
+
+TODO: Delete stories functionality
+
+TODO: Make it look fancy
 
 */
 

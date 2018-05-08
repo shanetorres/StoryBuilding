@@ -9,16 +9,25 @@ require("save.php");
 </head>
 <div id="header">
     <h1 id = "userTitle">User Stories</h1>
-    <Button type="button" id="newStory" onclick="newStory();">Create New Story</Button> <br>
+   <!-- <button type="button" id="newStory" onclick="newStory();">Create New Story</button> --><br>
 </div>
-<body></body>
+<body>
+
+    <?php $nextId = getNextId();
+
+        echo  "<div> <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" placeholder=\"Create a new story here!\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value=" . $nextId . "></form></div>";
+
+        loadStories();
+
+    ?>
+
+</body>
 
 <script>
 
-    var storyId = 1;
+    /*var storyId = 1;
 
     function newStory(){
-        $(document).ready(function() {  
   var test = {  
     id: "div",  
     class: "divclass",  
@@ -30,9 +39,13 @@ require("save.php");
   $div.html(" <form action=\"\" method=\"post\"><textarea name=\"text\" id=\"storytext\" disabled style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <button onclick=\"edit();\" type=\"button\" id=\"editbutton\">Edit</button> <button type=\"button\" id=\"deleteStory\">Delete</button><input type=\"hidden\" name=\"id\" value="+storyId+"></form>");
   $("body").append($div);
             storyId++;
-});  
+
     }
 
+    function setStoryId(newId){
+        storyId = newId;
+    }
+*/
 
     function edit(){
     	$("button").siblings("textarea").removeAttr("disabled");
@@ -42,8 +55,10 @@ require("save.php");
         
     	$("button").siblings("textarea").prop("disabled",true);
     }
+
 </script>
 <?php
+
         if(!empty($_POST["text"]))
         {
            $mytext = $_POST["text"];
