@@ -58,6 +58,8 @@ TODO: Delete stories functionality
 
 TODO: Make it look fancy
 
+TODO: Add author. should be as simple as a required input in the edit.php that is passed and saved in the setMessage function above. when loaded from loadstories, do not put it as an input but as a <h2> or something so it is not editable.
+
 */
 
 
