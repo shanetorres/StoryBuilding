@@ -8,7 +8,7 @@ require("includes/save.php");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <div id="header">
-    <h1 id = "userTitle">User Stories</h1>
+    <h1 id = "userTitle">Story Building</h1>
    <!-- <button type="button" id="newStory" onclick="newStory();">Create New Story</button> --><br>
 </div>
 <body>
