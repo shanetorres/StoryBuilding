@@ -8,10 +8,25 @@
 
 
 function setMessage($mytext,$id) {
-    $dbc = @mysqli_connect('localhost','root','mysql','stories')
+    $dbc = @mysqli_connect('localhost','root','','stories')
 OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
+    $idFound = false;
+    $s = "SELECT * FROM Story";
+    $r = $dbc->query($s);
+    if (mysqli_num_rows($r) > 0){
+        while ($row = mysqli_fetch_assoc($r)){
+            if ($row["storyID"] === $id){
+                $q = "UPDATE Story SET storyText='$mytext' WHERE storyID=$id";
+                $idFound = true;
+                break;
+            }
+        }
+    }
 
-    $q = "INSERT INTO Story (storyID, storyText) VALUES('$id','$mytext')";
+    if(!$idFound){
+        $q = "INSERT INTO Story (storyID, storyText) VALUES('$id','$mytext')";
+    }
+
     if ($dbc->query($q) === true)
     {
         header('Refresh:0');
@@ -37,7 +52,7 @@ OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
 }
 
 function getNextId(){
-    $dbc = @mysqli_connect('localhost','root','mysql','stories')
+    $dbc = @mysqli_connect('localhost','root','','stories')
 OR die ('Could not connect to MySQL: ' . mysqli_connect_error()) ;
 
     $q = "SELECT * FROM Story ORDER BY storyID DESC LIMIT 1";
