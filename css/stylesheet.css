@@ -1,8 +1,20 @@
-body {background-color: powderblue;
-    font-family: 'Roboto', serif;}
-    h1   {color: blue;
-    text-align: center;}
-    p    {color: red;}
+body
+{
+    background-color: powderblue;
+    font-family: 'Roboto', serif;
+}
+
+h1
+{
+    color: #09619D;
+    text-align: center;
+}
+
+p
+{
+    color: #000;
+    margin-bottom: 0;
+}
 
 #header {
     background-color:powderblue;
@@ -14,6 +26,23 @@ li {
 
 textarea {
     resize: none;
-    height: 200;
-    width: 200;
+    height: 200px;
+    width: 400px;
 }
+
+#container
+{
+    text-align: center;
+}
+
+h2
+{
+    margin-top: 10px;
+}
+
+h2, h4
+{
+    padding: 0px;
+    margin: 0;
+}
+

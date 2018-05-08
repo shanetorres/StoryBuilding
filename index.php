@@ -1,36 +1,56 @@
-<!DOCTYPE html>
+<?php
+require("includes/save.php");
+?>
 <html>
 <head>
-
-    <title>Includes Template</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css?version=1" media="screen" />
+    <link rel="stylesheet" href="css/stylesheet.css" />
     <link title='Roboto' href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- UIkit CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" /> -->
-
-    <!-- UIkit JS -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script> -->
-
 </head>
-    <body>
-        <button class="uk-button uk-button-primary">Primary</button>
-        <div id="container">
+<div id="header">
+    <h1 id = "userTitle">User Stories</h1>
+   <!-- <button type="button" id="newStory" onclick="newStory();">Create New Story</button> --><br>
+</div>
+<body>
 
-        <?php
-            include ('includes/header.html');
-            include ('includes/nav.html');
-            include ('includes/content.html');
-        ?>
+    <div id="container">
+    <?php $nextId = getNextId();
 
-        </div>
+        echo  "<div> <form action=\"\" method=\"post\"><p>Title</p><input name=\"title\" required><br /><p>Author</p><input name=\"author\" required><br /><br /><textarea name=\"text\" id=\"storytext\" placeholder=\"Create a new story here!\" style=\"resize:none; height: 200; width:400\"></textarea> <br><button name=\"save\" onclick=\"save();\" type=\"submit\" id=\"saveStory\">Save</button> <input type=\"hidden\" name=\"id\" value=" . $nextId . "></form></div>";
 
-    </body>
+        loadStories();
+
+    ?>
+    </div>
+
+</body>
+
+<script>
+
+    function edit(){
+    	$("button").siblings("textarea").removeAttr("disabled");
+    }
+
+    function save(){
+
+    	$("button").siblings("textarea").prop("disabled",true);
+    }
+
+</script>
+<?php
+
+        if(isset($_POST["save"]))
+        {
+           $mytext = $_POST["text"];
+            $id = $_POST["id"];
+            $author = $_POST["author"];
+            $title = $_POST["title"];
+           setMessage($mytext,$id,$author,$title);
+
+        }else if(isset($_POST["delete"])){
+            $id = $_POST["id"];
+            deleteMessage($id);
+        }
+
+?>
 </html>
