@@ -1,12 +1,13 @@
 body
 {
-    background-color: powderblue;
+    background-image: url(../imgs/old-paper-background.jpg);
+    background-attachment: fixed;
     font-family: 'Roboto', serif;
 }
 
 h1
 {
-    color: #09619D;
+    color: #FFF;
     text-align: center;
 }
 
@@ -14,10 +15,7 @@ p
 {
     color: #000;
     margin-bottom: 0;
-}
-
-#header {
-    background-color:powderblue;
+    font-weight: 900;
 }
 
 li {
